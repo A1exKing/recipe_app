@@ -210,7 +210,7 @@ class SliverAppBarWidget extends StatelessWidget {
                               
                             ),
                           ),
-                          Text(author.name, style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
+                          Text(author.name!, style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
                           Text("Chef", style: TextStyle(color: Color(0xff747474), fontSize: 14.sp,)),
                         ],
                         ));

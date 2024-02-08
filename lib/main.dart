@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/controllers/auth_controller.dart';
+import 'package:food_recipe_app/controllers/auther_contoroller.dart';
 import 'package:food_recipe_app/controllers/filter_controller.dart';
 import 'package:food_recipe_app/views/Login/sign_in_page.dart';
 import 'package:food_recipe_app/views/endpoint.dart';
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
+ 
     final SelectionController selectionFilterController = Get.put(SelectionController());
      final AuthController authController = Get.put(AuthController());
+
     return GetMaterialApp (
       debugShowCheckedModeBanner: false,
       title: 'Recipe App',

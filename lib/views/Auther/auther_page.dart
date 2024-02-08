@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipe_app/api/models/recipe.dart';
@@ -7,7 +9,8 @@ import 'package:food_recipe_app/views/RecipeDetail/recipe_detail_page.dart';
 import 'package:get/get.dart';
 
 class AutherPage extends StatefulWidget {
-  final AutherController autherController = Get.put(AutherController());
+ // final AutherController autherController = Get.put(AutherController());
+  final AutherDetailController autherDetailController = Get.put(AutherDetailController());
   final RecipeController recipeController = Get.put(RecipeController());
   AutherPage({super.key});
 
@@ -31,6 +34,7 @@ class _AutherPageState extends State<AutherPage>
   @override
   void initState() {
     super.initState();
+     
     _tabController = TabController(vsync: this, length: 4);
     var avatarController = Get.put(AvatarController());
     scrollSliverController.addListener(() {
@@ -51,27 +55,29 @@ class _AutherPageState extends State<AutherPage>
 
   @override
   Widget build(BuildContext context) {
+     final String author_id = Get.arguments;
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-   widget.autherController.fetchAuthors("1");
-    widget.recipeController.fetchRecipesAuthor("1");
+    widget.autherDetailController.fetchAuthorDetail(author_id);
+    widget.recipeController.fetchRecipesAuthor(author_id);
 });
    
     return Scaffold(
         backgroundColor: Colors.white,
         body: Obx(() {
-          if (widget.autherController.isLoading.value) {
+          if (widget.autherDetailController.isLoading.value) {
             return Center(child: CircularProgressIndicator());
           } else {
-            print(widget.autherController.status);
+            print(widget.autherDetailController.status);
 
-            return widget.autherController.status == "ok".obs
+            return widget.autherDetailController.status == "ok".obs
                 ? NestedScrollView(
                     controller: scrollSliverController,
                     headerSliverBuilder:
                         (BuildContext context, bool innerBoxIsScrolled) {
                       return <Widget>[
                         AutherSliverAppBar(
-                            author: widget.autherController.authorsList[0]),
+                            author: widget.autherDetailController.author.value),
                              SliverTabBar(),
                       ];
                     },

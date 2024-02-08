@@ -44,7 +44,7 @@ class _ExpandableTextState extends State<ExpandableText> {
                       });
                     },
                     child: Text(
-                      _isExpanded ? 'Розгорнути' : 'Приховати',
+                      _isExpanded ? 'Приховати' : 'Розгорнути',
                       style: TextStyle(color: Colors.red, fontWeight: FontWeight.normal, decoration: TextDecoration.underline, decorationColor: Colors.red,),
                     ),
                   ),

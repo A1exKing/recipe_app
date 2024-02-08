@@ -7,11 +7,13 @@ class ReviewRecipe {
  final String nameUser;
  final String photoUser;
  final String textReview;
+ final String create_at;
  final double rating;
   ReviewRecipe({
     required this.nameUser,
     required this.photoUser,
     required this.textReview,
+    required this.create_at,
     required this.rating,
   });
 
@@ -20,12 +22,14 @@ class ReviewRecipe {
     String? nameUser,
     String? photoUser,
     String? textReview,
+    String? create_at,
     double? rating,
   }) {
     return ReviewRecipe(
       nameUser: nameUser ?? this.nameUser,
       photoUser: photoUser ?? this.photoUser,
       textReview: textReview ?? this.textReview,
+       create_at: create_at ?? this.create_at,
       rating: rating ?? this.rating,
     );
   }
@@ -35,6 +39,7 @@ class ReviewRecipe {
       'nameUser': nameUser,
       'photoUser': photoUser,
       'textReview': textReview,
+      'create_at': create_at,
       'rating': rating,
     };
   }
@@ -43,7 +48,8 @@ class ReviewRecipe {
     return ReviewRecipe(
       nameUser: map['name'] as String,
       photoUser: map['profile_pic'] as String,
-      textReview: map['text'] as String,
+      textReview: map['comment'] as String,
+      create_at: map['create_at'] as String,
       rating: map['rating'].toDouble()
     );
   }
@@ -54,7 +60,7 @@ class ReviewRecipe {
 
   @override
   String toString() {
-    return 'ReviewRecipe(nameUser: $nameUser, photoUser: $photoUser, textReview: $textReview, rating: $rating)';
+    return 'ReviewRecipe(nameUser: $nameUser, photoUser: $photoUser, create_at: $create_at, textReview: $textReview, rating: $rating)';
   }
 
   @override

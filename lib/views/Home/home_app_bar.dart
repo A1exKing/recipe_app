@@ -55,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("Привіт ${user.userName}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp),),
+                        Text("Привіт, ${user.userName}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp),),
                         Text("Подивіться дивовижні рецепти...", style: TextStyle(color: Colors.white, fontSize: 12.sp), overflow: TextOverflow.clip,),
                       ],
                     ),

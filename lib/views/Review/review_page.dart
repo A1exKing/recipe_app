@@ -8,12 +8,12 @@ import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ReviewPage extends StatelessWidget {
-  const ReviewPage({super.key});
-
+   ReviewPage({super.key, required this.id_recipe});
+  final String id_recipe;
   @override
   Widget build(BuildContext context) {
     final ReviewRecipeController reviewRecipeController = Get.put(ReviewRecipeController());
-    reviewRecipeController.getReviewRecipe("1");
+    reviewRecipeController.getReviewRecipe(id_recipe.toString());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -193,6 +193,7 @@ ReviewRecipe reviewRecipe;
     return Padding(
       padding:  EdgeInsets.only(left: 20.w, right: 20.w, bottom: 8.h, top: 8.h),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
@@ -205,7 +206,7 @@ ReviewRecipe reviewRecipe;
               SizedBox(width: 8.w,),
               Text(reviewRecipe.nameUser, style: TextStyle(fontSize: 14.sp, color: Color(0xff242424), fontWeight: FontWeight.w500),),
               const Spacer(),
-              Text("11 months ago", style: TextStyle(fontSize: 12.sp, color: Color(0xff797979)),),
+              Text(reviewRecipe.create_at, style: TextStyle(fontSize: 12.sp, color: Color(0xff797979)),),
             ],
           ),
           Padding(

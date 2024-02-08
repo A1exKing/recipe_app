@@ -53,7 +53,9 @@ class RecipeDetail {
    String description;
   int cookingTime; // Час приготування у хвилинах
   String difficulty; // Складність страви
-  String author; // Автор рецепту
+  int author_id;
+   String author_name; 
+    String author_photo;  // Автор рецепту
   String? plan;
   List<String> ingridients;
   List<String> tags; // Позначки або категорії до яких належить страва
@@ -67,7 +69,9 @@ class RecipeDetail {
      required this.description,
     required this.cookingTime,
     required this.difficulty,
-    required this.author,
+    required this.author_id,
+    required this.author_name,
+    required this.author_photo,
     required this.ingridients,
     required this.tags,
     required this.plan,
@@ -82,7 +86,9 @@ class RecipeDetail {
         description = json['description'],
         cookingTime = json['cookingtime'],
         difficulty = json['difficulty'],
-        author = json['author'] ?? "auther",
+        author_id = json['author_id'],
+        author_name = json['author_name'],
+        author_photo = json['author_photo'],
       tags = json['tags'].split(','),
         plan = json["instructions"],
        ingridients = (json['ingredients'] as List).map((ing) {

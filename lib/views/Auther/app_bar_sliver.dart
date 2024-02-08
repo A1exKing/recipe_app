@@ -4,6 +4,7 @@ import 'package:food_recipe_app/api/models/auther.dart';
 import 'package:food_recipe_app/controllers/auther_contoroller.dart';
 import 'package:food_recipe_app/views/Auther/auther_page.dart';
 import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 
 
@@ -31,7 +32,11 @@ class SliverAppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
+     
+    
+    
+
+    return   SliverAppBar(
       pinned: true,
       floating: false,
       leadingWidth: 68,
@@ -43,7 +48,7 @@ class SliverAppBarWidget extends StatelessWidget {
         background: Stack(
           children: [
             Image.network(
-              "https://media.istockphoto.com/id/1316145932/photo/table-top-view-of-spicy-food.webp?b=1&s=170667a&w=0&k=20&c=P3jIQq8gVqlXjd4kP2OrXYyzqEXSWCwwYtwrd81psDY=",
+              "https://images.unsplash.com/photo-1611657366409-55549160be82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D",
               fit: BoxFit.cover,
               width: double.infinity,
               height: 240,
@@ -85,7 +90,7 @@ class SliverAppBarWidget extends StatelessWidget {
                                      CircleAvatar(
                                       radius: avatarSize > 1 ? 62.r  / avatarSize : 62.r ,
                                       
-                                      backgroundImage: NetworkImage(author.profilePhotoUrl,),
+                                      backgroundImage: NetworkImage( author.profilePhotoUrl,),
                                     ),
                                   
                                 
@@ -218,7 +223,7 @@ class SliverAppBarWidget extends StatelessWidget {
         ),
       ),
       ],
-    );
+    ); 
   }
 }
 

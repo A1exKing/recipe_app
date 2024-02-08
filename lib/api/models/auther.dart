@@ -1,12 +1,12 @@
 class AuthorDetail {
-  final String id;
-  final String name;
-  final String profilePhotoUrl;
-  final int recipeCount;
-  final String level;
-  final int followers;
-  final int following;
-  final String about;
+  late String id;
+  late String name;
+  late String profilePhotoUrl;
+  late int recipeCount;
+  late String level;
+  late int followers;
+  late int following;
+  late String about;
 
   AuthorDetail({
     required this.id,
@@ -18,7 +18,18 @@ class AuthorDetail {
     required this.following,
     required this.about,
   });
-
+ factory AuthorDetail.empty() {
+    return AuthorDetail(
+      id: '',
+      name: '',
+      profilePhotoUrl: '',
+      recipeCount: 0,
+      level: '',
+      followers: 0,
+      following: 0,
+      about: '',
+    );
+  }
   factory AuthorDetail.fromJson(Map<String, dynamic> json) {
     return AuthorDetail(
       id: json['id'].toString() as String,

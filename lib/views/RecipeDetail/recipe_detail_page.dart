@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipe_app/api/api_recipe.dart';
 import 'package:food_recipe_app/api/models/recipe.dart';
+import 'package:food_recipe_app/views/Auther/auther_page.dart';
 import 'package:food_recipe_app/views/RecipeDetail/app_bar.dart';
 import 'package:food_recipe_app/views/RecipeDetail/description_text.dart';
 import 'package:food_recipe_app/views/Review/review_page.dart';
+import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
@@ -49,33 +51,37 @@ class RecipeDetailPage extends StatelessWidget {
                       SizedBox(height: 20.h,),
                       Text("Автор", style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
                       SizedBox(height: 6.h,),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 25.r,
-                            backgroundImage: NetworkImage(recipe.imageUrl),
-                          ),
-                          SizedBox(width: 12.w,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${recipe.author}", style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
-                              Text("Шеф", style: TextStyle(color: Color(0xff797979), fontSize: 14.sp),),
-                            ],
-                          ),
-                          const Spacer(),
-                          CircleAvatar(
-                            radius: 21.r,
-                            backgroundColor: Color(0xfff6f6f6),
-                            child: Icon(Icons.chat, color: Color(0xfff4612d),),
-                          ),
-                          SizedBox(width: 12.w,),
-                          CircleAvatar(
-                            radius: 21.r,
-                            backgroundColor: Color(0xfff6f6f6),
-                            child: Icon(Icons.phone, color: Color(0xfff4612d),),
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: () => Get.to(AutherPage(), arguments: recipe.author_id.toString()),
+
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 25.r,
+                              backgroundImage: NetworkImage(recipe.author_photo),
+                            ),
+                            SizedBox(width: 12.w,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${recipe.author_name}", style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
+                                Text("Шеф", style: TextStyle(color: Color(0xff797979), fontSize: 14.sp),),
+                              ],
+                            ),
+                            const Spacer(),
+                            CircleAvatar(
+                              radius: 21.r,
+                              backgroundColor: Color(0xfff6f6f6),
+                              child: Icon(Icons.chat, color: Color(0xfff4612d),),
+                            ),
+                            SizedBox(width: 12.w,),
+                            CircleAvatar(
+                              radius: 21.r,
+                              backgroundColor: Color(0xfff6f6f6),
+                              child: Icon(Icons.phone, color: Color(0xfff4612d),),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 16.h,),
                       Text("Опис", style: TextStyle(color: Color(0xff242424), fontSize: 18.sp, fontWeight: FontWeight.w500),),
@@ -191,14 +197,21 @@ class RecipeDetailPage extends StatelessWidget {
                         padding: const EdgeInsets.only( bottom: 16),
                         child: Text("Перегляути відео", style: TextStyle(color: Color(0xff242424), fontSize: 16.sp, fontWeight: FontWeight.w500),),
                       ),
+                      
                     SizedBox(
                       height: 220,
                       width: double.infinity,
                       child: YoutubeVideoScreen()),
-
-                       ElevatedButton(onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewPage()));
-                    }, child: Text("Відгуки")),
+SizedBox(height: 20,),
+                       SizedBox(
+                        height: 46,
+                        width: double.infinity,
+                         child: ElevatedButton(onPressed: (){
+                                             Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewPage(id_recipe : recipe.id)));
+                                           }, child: Text("Відгуки", style: TextStyle(color: Colors.white),),
+                                           style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.orange)),
+                                           ),
+                       ),
                     
                     ],
                   ),
@@ -260,7 +273,7 @@ class _YoutubeVideoScreenState extends State<YoutubeVideoScreen> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'qJG8xgQYBwg', // ID відео з YouTube
+      initialVideoId: 'mhDJNfV7hjk', // ID відео з YouTube
       flags: YoutubePlayerFlags(
         autoPlay: false ,
         mute: false,
